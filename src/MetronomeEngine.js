@@ -1,4 +1,9 @@
-// eslint-disable-next-line no-unused-vars
+/*
+	MetronomeEngine Class controls all the logic for the metronome app.
+	setInterval is used to call the scheduler method based on lookahead property
+	the scheduler will continue to schedule notes into the queue until exceeding the scheduleAheadTime property limit
+*/
+
 export default class MetronomeEngine {
 	constructor() {
 		this.audioContext = null; // reference to audioContext from web audio API
@@ -24,14 +29,13 @@ export default class MetronomeEngine {
 		}
 	}
 	scheduleNote(beatNumber, time) {
-		console.log("ran class");
 		// push not to queue for tracking
 		this.noteQueue.push({ note: beatNumber, time: time });
 
 		// create sound source (try switching to buffer ?)
 		const osc = this.audioContext.createOscillator();
 		const envelope = this.audioContext.createGain();
-
+		// assign higher frequency for downbeats only
 		osc.frequency.value = beatNumber % this.beatsPerBar === 0 ? 1000 : 800;
 		envelope.gain.value = 1;
 		envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
@@ -44,12 +48,6 @@ export default class MetronomeEngine {
 		osc.stop(time + 0.03);
 	}
 	scheduler() {
-		console.log(
-			this.nextNoteTime,
-			this.audioContext.currentTime,
-			this.nextNoteTime <
-				this.audioContext.curentTime + this.scheduleAheadTime
-		);
 		while (
 			this.nextNoteTime <
 			this.audioContext.currentTime + this.scheduleAheadTime
