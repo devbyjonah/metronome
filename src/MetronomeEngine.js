@@ -1,6 +1,6 @@
 /*
-	MetronomeEngine Class controls all the logic for the metronome app.
-	setInterval is used to call the scheduler method based on lookahead property
+	MetronomeEngine Class controls all the logic for the metronome itself.
+	setInterval is used to call the scheduler method based every lookahead ms
 	the scheduler will continue to schedule notes into the queue until exceeding the scheduleAheadTime property limit
 */
 
