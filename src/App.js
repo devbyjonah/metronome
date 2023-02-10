@@ -1,11 +1,11 @@
 import "./App.css";
 
-import MetronomeUI from "./components/MetronomeUI";
+import Metronome from "./components/Metronome";
 
 export default function App() {
   return (
     <div>
-      <MetronomeUI />
+      <Metronome />
     </div>
   );
 }
