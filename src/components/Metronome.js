@@ -7,9 +7,10 @@ import MetronomeEngine from "../MetronomeEngine";
 
 export default function Metronome() {
 	// create new metronome engine instance as a ref
-	// use ref allows changes without re-render and persists after re-renders
+	// useRef hook creates a ref object with current property
+	// ref.current allows changes without re-rendering and persists after re-renders
 	let metronomeEngine = useRef(new MetronomeEngine());
-	// create two state variables for tempo and playing values that interact with the UI
+	// creating state for values that interact with the UI
 	let [playing, setPlaying] = useState(metronomeEngine.current.playing);
 	let [tempo, setTempo] = useState(metronomeEngine.current.tempo);
 	// toggle metronome
