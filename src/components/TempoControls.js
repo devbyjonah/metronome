@@ -1,21 +1,40 @@
-import { Button, ButtonGroup } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 export default function TempoControls({ changeTempo }) {
 	return (
-		<ButtonGroup id="controls">
-			<Button variant="dark" onClick={changeTempo} value={-5}>
+		<>
+			<Button
+				className="order-0"
+				variant="dark"
+				onClick={changeTempo}
+				value={-5}
+			>
 				-5
 			</Button>
-			<Button variant="dark" onClick={changeTempo} value={-1}>
+			<Button
+				className="order-0"
+				variant="dark"
+				onClick={changeTempo}
+				value={-1}
+			>
 				-
 			</Button>
-			<Button>BPM</Button>
-			<Button variant="dark" onClick={changeTempo} value={1}>
+			<Button
+				className="order-2"
+				variant="dark"
+				onClick={changeTempo}
+				value={1}
+			>
 				+
 			</Button>
-			<Button variant="dark" onClick={changeTempo} value={5}>
+			<Button
+				className="order-2"
+				variant="dark"
+				onClick={changeTempo}
+				value={5}
+			>
 				+5
 			</Button>
-		</ButtonGroup>
+		</>
 	);
 }

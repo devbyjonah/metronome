@@ -27,10 +27,12 @@ export default function Metronome() {
 	};
 
 	return (
-		<div className="metronome text-center mt-5">
-			<MetronomeScreen tempo={tempo} />
-			<TempoControls changeTempo={changeTempo} />
-			<ToggleButton startStop={startStop} playing={playing} />
+		<div className="metronome">
+			<div className="order-1 d-flex flex-column">
+				<MetronomeScreen tempo={tempo} />
+				<ToggleButton startStop={startStop} playing={playing} />
+			</div>
+			<TempoControls className="fs-1" changeTempo={changeTempo} />
 		</div>
 	);
 }
