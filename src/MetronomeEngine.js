@@ -16,6 +16,8 @@ export default class MetronomeEngine {
 		this.nextNoteTime = 0.0; // when next note should play
 		this.playing = false;
 		this.intervalId = null; // reference to the setInterval making calls to scheduler
+		this.volume = 1;
+		this.pitch = 1000;
 	}
 
 	nextNote() {
@@ -35,14 +37,18 @@ export default class MetronomeEngine {
 		// create sound source (try switching to buffer ?)
 		const osc = this.audioContext.createOscillator();
 		const envelope = this.audioContext.createGain();
+		const gainNode = new GainNode(this.audioContext);
+
+		gainNode.gain.value = this.volume;
 		// assign higher frequency for downbeats only
-		osc.frequency.value = beatNumber % this.beatsPerBar === 0 ? 1000 : 800;
+		osc.frequency.value =
+			beatNumber % this.beatsPerBar === 0 ? this.pitch : this.pitch * 0.8;
 		envelope.gain.value = 1;
 		envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
 		envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02);
 
 		osc.connect(envelope);
-		envelope.connect(this.audioContext.destination);
+		envelope.connect(gainNode).connect(this.audioContext.destination);
 
 		osc.start(time);
 		osc.stop(time + 0.03);

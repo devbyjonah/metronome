@@ -4,6 +4,7 @@ import MetronomeScreen from "./MetronomeScreen";
 import TempoControls from "./TempoControls";
 import ToggleButton from "./ToggleButton";
 import MetronomeEngine from "../MetronomeEngine";
+import Sliders from "./Sliders";
 
 import "../css/Metronome.css";
 
@@ -26,6 +27,14 @@ export default function Metronome() {
 		setTempo(metronomeEngine.current.tempo);
 	};
 
+	const changeVolume = (event) => {
+		metronomeEngine.current.volume = event.target.value;
+	};
+
+	const changePitch = (event) => {
+		metronomeEngine.current.pitch = event.target.value;
+	};
+
 	return (
 		<div className="metronome">
 			<div className="order-1 d-flex flex-column">
@@ -33,6 +42,7 @@ export default function Metronome() {
 				<ToggleButton startStop={startStop} playing={playing} />
 			</div>
 			<TempoControls className="fs-1" changeTempo={changeTempo} />
+			<Sliders changeVolume={changeVolume} changePitch={changePitch} />
 		</div>
 	);
 }
