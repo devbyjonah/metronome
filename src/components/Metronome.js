@@ -5,6 +5,8 @@ import TempoControls from "./TempoControls";
 import ToggleButton from "./ToggleButton";
 import MetronomeEngine from "../MetronomeEngine";
 
+import "../css/Metronome.css";
+
 export default function Metronome() {
 	// store new metronome as a ref
 	// ref.current allows changes without re-rendering and persists after re-renders
@@ -25,7 +27,7 @@ export default function Metronome() {
 	};
 
 	return (
-		<div className="container text-center mt-5">
+		<div className="metronome text-center mt-5">
 			<MetronomeScreen tempo={tempo} />
 			<TempoControls changeTempo={changeTempo} />
 			<ToggleButton startStop={startStop} playing={playing} />
