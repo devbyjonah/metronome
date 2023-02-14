@@ -1,6 +1,6 @@
 export default function VolumeSlider({ changeVolume, changePitch }) {
 	return (
-		<div className="d-flex flex-column position-absolute top-50">
+		<div className="d-flex flex-column">
 			<label htmlFor="volume">Volume</label>
 			<input
 				name="volume"
