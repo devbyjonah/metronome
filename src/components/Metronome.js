@@ -5,6 +5,7 @@ import TempoControls from "./TempoControls";
 import ToggleButton from "./ToggleButton";
 import MetronomeEngine from "../MetronomeEngine";
 import Sliders from "./Sliders";
+import Subdivisions from "./Subdivisions";
 
 import "../css/Metronome.css";
 
@@ -21,7 +22,6 @@ export default function Metronome() {
 		setPlaying(!playing);
 	};
 
-	// !!!!!!!!!!(refactor to not use values changeable from DOM)!!!!!!!!!!!!!!
 	const changeTempo = (event) => {
 		metronomeEngine.current.tempo += Number(event.target.value);
 		setTempo(metronomeEngine.current.tempo);
@@ -35,14 +35,25 @@ export default function Metronome() {
 		metronomeEngine.current.pitch = event.target.value;
 	};
 
+	const changeSubdivision = (event) => {
+		metronomeEngine.current.subdivision = event.target.value;
+	};
+
 	return (
-		<div className="metronome">
-			<div className="order-1 d-flex flex-column">
-				<MetronomeScreen tempo={tempo} />
-				<ToggleButton startStop={startStop} playing={playing} />
+		<div className="metronome container">
+			<Subdivisions changeSubdivision={changeSubdivision} />
+			<div className="h-50 center-strip">
+				<div className="row order-1 d-flex flex-column">
+					<MetronomeScreen tempo={tempo} />
+					<ToggleButton startStop={startStop} playing={playing} />
+				</div>
+				<TempoControls className="fs-1" changeTempo={changeTempo} />
+				<Sliders
+					changeVolume={changeVolume}
+					changePitch={changePitch}
+				/>
 			</div>
-			<TempoControls className="fs-1" changeTempo={changeTempo} />
-			<Sliders changeVolume={changeVolume} changePitch={changePitch} />
+			<div className="h-25">Time signature controls</div>
 		</div>
 	);
 }
