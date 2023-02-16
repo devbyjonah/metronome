@@ -6,6 +6,7 @@ import ToggleButton from "./ToggleButton";
 import MetronomeEngine from "../MetronomeEngine";
 import Sliders from "./Sliders";
 import Subdivisions from "./Subdivisions";
+import TimeSignatures from "./TimeSignatures";
 
 import "../css/Metronome.css";
 
@@ -28,15 +29,19 @@ export default function Metronome() {
 	};
 
 	const changeVolume = (event) => {
-		metronomeEngine.current.volume = event.target.value;
+		metronomeEngine.current.volume = Number(event.target.value);
 	};
 
 	const changePitch = (event) => {
-		metronomeEngine.current.pitch = event.target.value;
+		metronomeEngine.current.pitch = Number(event.target.value);
 	};
 
 	const changeSubdivision = (event) => {
-		metronomeEngine.current.subdivision = event.target.value;
+		metronomeEngine.current.subdivision = Number(event.target.value);
+	};
+
+	const changeSignature = (event) => {
+		metronomeEngine.current.beatsPerBar = Number(event.target.value);
 	};
 
 	return (
@@ -53,7 +58,7 @@ export default function Metronome() {
 					changePitch={changePitch}
 				/>
 			</div>
-			<div className="h-25">Time signature controls</div>
+			<TimeSignatures changeSignature={changeSignature} />
 		</div>
 	);
 }

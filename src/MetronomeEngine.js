@@ -18,7 +18,7 @@ export default class MetronomeEngine {
 		this.intervalId = null; // reference to the setInterval making calls to scheduler
 		this.volume = 1;
 		this.pitch = 1000;
-		this.subdivision = 3; // number of subdivisions per beat
+		this.subdivision = 1; // number of subdivisions per beat
 	}
 
 	nextBeat() {
@@ -27,11 +27,11 @@ export default class MetronomeEngine {
 		this.nextNoteTime += secondsPerBeat;
 		// increment beat number, set to 0 if end of bar
 		this.currentBeat++;
-		if (this.currentBeat === this.beatsPerBar) {
+		if (this.currentBeat >= this.beatsPerBar) {
 			this.currentBeat = 0;
 		}
 	}
-	scheduleNote(beatNumber, time, pitch) {
+	scheduleNote(beatNumber, time, onBeat) {
 		// push not to queue for tracking
 		this.noteQueue.push({ note: beatNumber, time: time });
 
@@ -42,7 +42,13 @@ export default class MetronomeEngine {
 
 		gainNode.gain.value = this.volume;
 		// assign higher frequency for downbeats only
-		osc.frequency.value = pitch;
+		let pitch;
+		if (beatNumber === 0) {
+			pitch = this.pitch * 1.2;
+		} else {
+			pitch = this.pitch;
+		}
+		osc.frequency.value = onBeat ? pitch : this.pitch * 0.8;
 		//beatNumber % this.beatsPerBar === 0 ? this.pitch : this.pitch * 0.8;
 		envelope.gain.value = 1;
 		envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
@@ -68,7 +74,7 @@ export default class MetronomeEngine {
 				this.scheduleNote(
 					this.currentBeat,
 					this.nextNoteTime + secondsPerSubdivision * i,
-					i === 0 ? this.pitch : this.pitch * 0.8
+					i === 0
 				);
 			}
 			// move on to next beat
