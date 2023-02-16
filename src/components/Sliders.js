@@ -1,4 +1,4 @@
-export default function VolumeSlider({ changeVolume, changePitch }) {
+export default function Sliders({ changeVolume, changePitch }) {
 	return (
 		<div className="d-flex flex-column">
 			<label htmlFor="volume">Volume</label>
