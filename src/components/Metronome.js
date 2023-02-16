@@ -17,7 +17,7 @@ export default function Metronome() {
 	// creating state for values that interact with the UI
 	let [playing, setPlaying] = useState(metronomeEngine.current.playing);
 	let [tempo, setTempo] = useState(metronomeEngine.current.tempo);
-
+	// handler functions for interacting with metronomeEngine
 	const startStop = () => {
 		metronomeEngine.current.startStop();
 		setPlaying(!playing);
@@ -37,18 +37,18 @@ export default function Metronome() {
 	};
 
 	const changeSubdivision = (event) => {
-		metronomeEngine.current.subdivision = Number(event.target.value);
+		metronomeEngine.current.subdivision = Number(event.currentTarget.value);
 	};
 
 	const changeSignature = (event) => {
-		metronomeEngine.current.beatsPerBar = Number(event.target.value);
+		metronomeEngine.current.beatsPerBar = Number(event.currentTarget.value);
 	};
 
 	return (
 		<div className="metronome container">
-			<Subdivisions changeSubdivision={changeSubdivision} />
-			<div className="h-50 center-strip">
-				<div className="row order-1 d-flex flex-column">
+			<div className="row h-25"></div>
+			<div className="h-25 mt-5 center-strip">
+				<div className="mx-auto row order-1 d-flex flex-column">
 					<MetronomeScreen tempo={tempo} />
 					<ToggleButton startStop={startStop} playing={playing} />
 				</div>
@@ -58,7 +58,10 @@ export default function Metronome() {
 					changePitch={changePitch}
 				/>
 			</div>
-			<TimeSignatures changeSignature={changeSignature} />
+			<div className="d-flex">
+				<Subdivisions changeSubdivision={changeSubdivision} />
+				<TimeSignatures changeSignature={changeSignature} />
+			</div>
 		</div>
 	);
 }

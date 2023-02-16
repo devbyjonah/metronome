@@ -2,20 +2,36 @@ import { Button, ButtonGroup } from "react-bootstrap";
 
 export default function TimeSignatures({ changeSignature }) {
 	return (
-		<div className="d-flex flex-column align-items-center justify-content-end text-center">
-			<label htmlFor="timeSignature">Time Signature</label>
+		<div className="w-50 m-1 d-flex flex-column">
+			<label htmlFor="timeSignature"></label>
 			<ButtonGroup name="timeSignature">
 				<Button onClick={changeSignature} value={4} variant="dark">
-					4/4
+					<div>
+						<span>4</span>
+						<hr className="my-0" />
+						<span>4</span>
+					</div>
 				</Button>
 				<Button onClick={changeSignature} value={3} variant="dark">
-					3/4
+					<div>
+						<span>3</span>
+						<hr className="my-0" />
+						<span>4</span>
+					</div>
 				</Button>
 				<Button onClick={changeSignature} value={2} variant="dark">
-					2/4
+					<div>
+						<span>2</span>
+						<hr className="my-0" />
+						<span>4</span>
+					</div>
 				</Button>
 				<Button onClick={changeSignature} value={5} variant="dark">
-					5/4
+					<div>
+						<span>5</span>
+						<hr className="my-0" />
+						<span>4</span>
+					</div>
 				</Button>
 			</ButtonGroup>
 		</div>
