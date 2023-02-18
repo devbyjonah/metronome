@@ -2,9 +2,9 @@ import { Button, ButtonGroup } from "react-bootstrap";
 
 export default function Subdivisions({ changeSubdivision }) {
 	return (
-		<div className="w-50 m-1 d-flex flex-column h-100">
+		<div className="w-50 m-1 d-flex flex-column">
 			<label htmlFor="subdivisions"></label>
-			<ButtonGroup name="subdivisions">
+			<ButtonGroup style={{ height: 75 + "px" }} name="subdivisions">
 				<Button
 					className="p-0"
 					onClick={changeSubdivision}

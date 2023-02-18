@@ -16,7 +16,7 @@ export default function Metronome() {
 	let metronomeEngine = useRef(new MetronomeEngine());
 	// creating state for values that interact with the UI
 	let [playing, setPlaying] = useState(metronomeEngine.current.playing);
-	let [tempo, setTempo] = useState(metronomeEngine.current.tempo);
+	let [tempo, setTempo] = useState(metronomeEngine.current.getTempo());
 	// handler functions for interacting with metronomeEngine
 	const startStop = () => {
 		metronomeEngine.current.startStop();
@@ -24,8 +24,11 @@ export default function Metronome() {
 	};
 
 	const changeTempo = (event) => {
-		metronomeEngine.current.tempo += Number(event.target.value);
-		setTempo(metronomeEngine.current.tempo);
+		let bpmDiff = Number(event.currentTarget.value);
+		metronomeEngine.current.setTempo(
+			metronomeEngine.current.getTempo() + bpmDiff
+		);
+		setTempo(metronomeEngine.current.getTempo());
 	};
 
 	const changeVolume = (event) => {
