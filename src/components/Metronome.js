@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import MetronomeScreen from "./MetronomeScreen";
-import TempoControls from "./TempoControls";
+// import TempoControls from "./TempoControls";
 import ToggleButton from "./ToggleButton";
 import MetronomeEngine from "../MetronomeEngine";
 import Sliders from "./Sliders";
 import Subdivisions from "./Subdivisions";
 import TimeSignatures from "./TimeSignatures";
+import TempoButton from "./TempoButton";
 
 import "../css/Metronome.css";
 
@@ -48,20 +50,26 @@ export default function Metronome() {
 	};
 
 	return (
-		<div className="metronome container">
-			<div className="row h-25"></div>
-			<div className="h-25 mt-5 center-strip">
-				<div className="mx-auto row order-1 d-flex flex-column">
-					<MetronomeScreen tempo={tempo} />
-					<ToggleButton startStop={startStop} playing={playing} />
-				</div>
-				<TempoControls className="fs-1" changeTempo={changeTempo} />
+		<div className="metronome">
+			<div className="h-50 d-flex align-items-end justify-content-evenly">
+				<ButtonGroup>
+					<TempoButton changeTempo={changeTempo} value={-5} />
+					<TempoButton changeTempo={changeTempo} value={-1} />
+				</ButtonGroup>
 				<Sliders
 					changeVolume={changeVolume}
 					changePitch={changePitch}
 				/>
+				<div className="d-flex flex-column">
+					<MetronomeScreen tempo={tempo} />
+					<ToggleButton startStop={startStop} playing={playing} />
+				</div>
+				<ButtonGroup>
+					<TempoButton changeTempo={changeTempo} value={1} />
+					<TempoButton changeTempo={changeTempo} value={5} />
+				</ButtonGroup>
 			</div>
-			<div className="d-flex">
+			<div className="h-25 d-flex mt-3">
 				<Subdivisions changeSubdivision={changeSubdivision} />
 				<TimeSignatures changeSignature={changeSignature} />
 			</div>

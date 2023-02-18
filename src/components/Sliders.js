@@ -1,6 +1,6 @@
 export default function Sliders({ changeVolume, changePitch }) {
 	return (
-		<div className="ms-5 d-flex flex-column">
+		<div className="d-flex flex-column">
 			<label htmlFor="volume">Volume</label>
 			<input
 				name="volume"
