@@ -10,7 +10,7 @@ export default class MetronomeEngine {
 		this.noteQueue = []; // stores all notes played/scheduled for debugging
 		this._currentBeat = 0;
 		this._beatsPerBar = 4;
-		this.tempo = 120;
+		this._tempo = 120;
 		this.lookahead = 25; // how often to call scheduler in ms
 		this.scheduleAheadTime = 0.1; // how far ahead to schedule audio in sec
 		this.nextNoteTime = 0.0; // when next note should play
@@ -21,15 +21,29 @@ export default class MetronomeEngine {
 		this.subdivision = 1; // number of subdivisions per beat
 	}
 
+	getTempo() {
+		return this._tempo;
+	}
+
+	setTempo(tempo) {
+		if (typeof tempo === "number" && tempo > 0 && tempo < 500) {
+			this._tempo = tempo;
+		}
+	}
+
 	setBeatsPerBar(beatsPerBar) {
-		if (beatsPerBar >= 0 && beatsPerBar <= 5) {
+		if (
+			typeof beatsPerBar === "number" &&
+			beatsPerBar > 0 &&
+			beatsPerBar < 6
+		) {
 			this._beatsPerBar = beatsPerBar;
 		}
 	}
 
 	nextBeat() {
 		// move current note/time forward by a quarter note
-		let secondsPerBeat = 60.0 / this.tempo;
+		let secondsPerBeat = 60.0 / this._tempo;
 		this.nextNoteTime += secondsPerBeat;
 		// increment beat number, set to 0 if end of bar
 		this._currentBeat++;
@@ -69,7 +83,7 @@ export default class MetronomeEngine {
 			this.audioContext.currentTime + this.scheduleAheadTime
 		) {
 			// find length of each subdivision
-			let secondsPerBeat = 60.0 / this.tempo;
+			let secondsPerBeat = 60.0 / this._tempo;
 			let secondsPerSubdivision = secondsPerBeat / this.subdivision;
 			// schedule a note for each subdivision of the beat
 			for (let i = 0; i < this.subdivision; i++) {
