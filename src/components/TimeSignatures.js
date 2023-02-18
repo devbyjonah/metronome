@@ -4,7 +4,7 @@ export default function TimeSignatures({ changeSignature }) {
 	return (
 		<div className="w-50 m-1 d-flex flex-column">
 			<label htmlFor="timeSignature"></label>
-			<ButtonGroup name="timeSignature" style={{ height: 75 + "px" }}>
+			<ButtonGroup name="timeSignature" style={{ height: 80 + "px" }}>
 				<Button onClick={changeSignature} value={4} variant="dark">
 					<div className="fs-4">
 						<span>4</span>

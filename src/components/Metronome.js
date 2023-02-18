@@ -32,15 +32,15 @@ export default function Metronome() {
 	};
 
 	const changeVolume = (event) => {
-		metronomeEngine.current.volume = Number(event.target.value);
+		metronomeEngine.current.setVolume(+event.currentTarget.value);
 	};
 
 	const changePitch = (event) => {
-		metronomeEngine.current.pitch = Number(event.target.value);
+		metronomeEngine.current.setPitch(+event.currentTarget.value);
 	};
 
 	const changeSubdivision = (event) => {
-		metronomeEngine.current.subdivision = Number(event.currentTarget.value);
+		metronomeEngine.current.setSubdivision(+event.currentTarget.value);
 	};
 
 	const changeSignature = (event) => {

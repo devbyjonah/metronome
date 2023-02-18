@@ -4,7 +4,7 @@ export default function Subdivisions({ changeSubdivision }) {
 	return (
 		<div className="w-50 m-1 d-flex flex-column">
 			<label htmlFor="subdivisions"></label>
-			<ButtonGroup style={{ height: 75 + "px" }} name="subdivisions">
+			<ButtonGroup style={{ height: 80 + "px" }} name="subdivisions">
 				<Button
 					className="p-0"
 					onClick={changeSubdivision}
