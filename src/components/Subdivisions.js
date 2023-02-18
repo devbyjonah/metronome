@@ -11,7 +11,11 @@ export default function Subdivisions({ changeSubdivision }) {
 					value="1"
 					variant="dark"
 				>
-					<img width={61} src="./quarter.svg" alt="quarter note" />
+					<img
+						width={61}
+						src="./icons/quarter.svg"
+						alt="quarter note"
+					/>
 				</Button>
 				<Button
 					className="p-0"
@@ -19,7 +23,11 @@ export default function Subdivisions({ changeSubdivision }) {
 					value="2"
 					variant="dark"
 				>
-					<img width={61} src="./eighth.svg" alt="quarter note" />
+					<img
+						width={61}
+						src="./icons/eighth.svg"
+						alt="quarter note"
+					/>
 				</Button>
 				<Button
 					className="p-0"
@@ -27,7 +35,11 @@ export default function Subdivisions({ changeSubdivision }) {
 					value="3"
 					variant="dark"
 				>
-					<img width={61} src="./triplet.svg" alt="quarter note" />
+					<img
+						width={61}
+						src="./icons/triplet.svg"
+						alt="quarter note"
+					/>
 				</Button>
 				<Button
 					className="p-0"
@@ -35,7 +47,11 @@ export default function Subdivisions({ changeSubdivision }) {
 					value="4"
 					variant="dark"
 				>
-					<img width={61} src="./sixteenth.svg" alt="quarter note" />
+					<img
+						width={61}
+						src="./icons/sixteenth.svg"
+						alt="quarter note"
+					/>
 				</Button>
 			</ButtonGroup>
 		</div>
