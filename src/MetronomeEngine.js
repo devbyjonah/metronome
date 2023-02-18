@@ -8,8 +8,8 @@ export default class MetronomeEngine {
 	constructor() {
 		this.audioContext = null; // reference to audioContext from web audio API
 		this.noteQueue = []; // stores all notes played/scheduled for debugging
-		this.currentBeat = 0;
-		this.beatsPerBar = 4;
+		this._currentBeat = 0;
+		this._beatsPerBar = 4;
 		this.tempo = 120;
 		this.lookahead = 25; // how often to call scheduler in ms
 		this.scheduleAheadTime = 0.1; // how far ahead to schedule audio in sec
@@ -21,14 +21,20 @@ export default class MetronomeEngine {
 		this.subdivision = 1; // number of subdivisions per beat
 	}
 
+	setBeatsPerBar(beatsPerBar) {
+		if (beatsPerBar >= 0 && beatsPerBar <= 5) {
+			this._beatsPerBar = beatsPerBar;
+		}
+	}
+
 	nextBeat() {
 		// move current note/time forward by a quarter note
 		let secondsPerBeat = 60.0 / this.tempo;
 		this.nextNoteTime += secondsPerBeat;
 		// increment beat number, set to 0 if end of bar
-		this.currentBeat++;
-		if (this.currentBeat >= this.beatsPerBar) {
-			this.currentBeat = 0;
+		this._currentBeat++;
+		if (this._currentBeat >= this._beatsPerBar) {
+			this._currentBeat = 0;
 		}
 	}
 	scheduleNote(beatNumber, time, onBeat) {
@@ -42,14 +48,10 @@ export default class MetronomeEngine {
 
 		gainNode.gain.value = this.volume;
 		// assign higher frequency for downbeats only
-		let pitch;
-		if (beatNumber === 0) {
-			pitch = this.pitch * 1.2;
-		} else {
-			pitch = this.pitch;
-		}
+		let pitch = beatNumber === 0 ? this.pitch * 1.2 : this.pitch;
+
 		osc.frequency.value = onBeat ? pitch : this.pitch * 0.8;
-		//beatNumber % this.beatsPerBar === 0 ? this.pitch : this.pitch * 0.8;
+		//beatNumber % this._beatsPerBar === 0 ? this.pitch : this.pitch * 0.8;
 		envelope.gain.value = 1;
 		envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
 		envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02);
@@ -72,7 +74,7 @@ export default class MetronomeEngine {
 			// schedule a note for each subdivision of the beat
 			for (let i = 0; i < this.subdivision; i++) {
 				this.scheduleNote(
-					this.currentBeat,
+					this._currentBeat,
 					this.nextNoteTime + secondsPerSubdivision * i,
 					i === 0
 				);
@@ -91,7 +93,7 @@ export default class MetronomeEngine {
 
 		this.playing = true;
 
-		this.currentBeat = 0;
+		this._currentBeat = 0;
 		this.nextNoteTime = this.audioContext.currentTime + 0.05;
 
 		this.intervalId = setInterval(() => this.scheduler(), this.lookahead);

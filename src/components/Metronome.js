@@ -41,7 +41,7 @@ export default function Metronome() {
 	};
 
 	const changeSignature = (event) => {
-		metronomeEngine.current.beatsPerBar = Number(event.currentTarget.value);
+		metronomeEngine.current.setBeatsPerBar(+event.currentTarget.value);
 	};
 
 	return (
