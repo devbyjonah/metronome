@@ -1,1 +1,1 @@
-Metronome app implemented using React on the frontend and Node/Express on the backend for user authentication. Additionally this project will make you use of Bootstrap 5 for styling and the web audio API for precise scheduling of audio events in the metronome component.
+Metronome app implemented using React on the frontend and Node/Express on the backend for user authentication. Additionally this project will make use of Bootstrap 5 for styling and the web audio API for precise scheduling of audio events in the metronome component.
