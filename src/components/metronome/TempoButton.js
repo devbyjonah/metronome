@@ -1,5 +1,9 @@
 import Button from "react-bootstrap/Button";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/DarkModeContext";
+
 export default function TempoButton({ changeTempo, value }) {
+	const { darkMode } = useContext(DarkModeContext);
 	let label;
 	if (value === -1) {
 		label = "-";
@@ -12,7 +16,7 @@ export default function TempoButton({ changeTempo, value }) {
 	return (
 		<Button
 			className="btn-lg"
-			variant="dark"
+			variant={darkMode ? "dark" : "light"}
 			onClick={changeTempo}
 			value={value}
 		>

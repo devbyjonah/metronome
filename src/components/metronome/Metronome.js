@@ -4,13 +4,13 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import MetronomeScreen from "./MetronomeScreen";
 // import TempoControls from "./TempoControls";
 import ToggleButton from "./ToggleButton";
-import MetronomeEngine from "../MetronomeEngine";
+import MetronomeEngine from "../../MetronomeEngine";
 import Sliders from "./Sliders";
 import Subdivisions from "./Subdivisions";
 import TimeSignatures from "./TimeSignatures";
 import TempoButton from "./TempoButton";
 
-import "../css/Metronome.css";
+import "../../css/Metronome.css";
 
 export default function Metronome() {
 	// store new metronome as a ref
