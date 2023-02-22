@@ -10,7 +10,12 @@ export default function TempoButton({ changeTempo, value }) {
 	}
 
 	return (
-		<Button variant="dark" onClick={changeTempo} value={value}>
+		<Button
+			className="btn-lg"
+			variant="dark"
+			onClick={changeTempo}
+			value={value}
+		>
 			{label}
 		</Button>
 	);
