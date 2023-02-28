@@ -1,3 +1,6 @@
+// metronomeHandlers is a function used to build the metronome handler functions
+// that will be attached to various inputs on the metronome
+// the function accepts 3 parameters for references to state setter functions and the metronomeEngine ref
 export default function metronomeHandlers(
 	setTempo,
 	setPlaying,
