@@ -2,9 +2,12 @@ import { useRef, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import MetronomeScreen from "./MetronomeScreen";
-import MetronomeEngine from "../../MetronomeEngine";
 import Sliders from "./Sliders";
 import MetronomeButton from "./MetronomeButton";
+import TimeSignatureButtons from "./TimeSignatureButtons";
+import SubdivisionButtons from "./SubdivisionButtons";
+
+import MetronomeEngine from "../../MetronomeEngine";
 import metronomeHandlers from "./metronomeHandlers";
 
 import "../../css/Metronome.css";
@@ -66,54 +69,8 @@ export default function Metronome() {
 				</ButtonGroup>
 			</div>
 			<div className="d-flex mt-3">
-				<ButtonGroup className="w-50 mx-1">
-					<MetronomeButton
-						onClick={changeSubdivision}
-						value="1"
-						label="quarter.svg"
-						className="p-0"
-					/>
-					<MetronomeButton
-						onClick={changeSubdivision}
-						value="2"
-						label="eighth.svg"
-						className="p-0"
-					/>
-					<MetronomeButton
-						onClick={changeSubdivision}
-						value="3"
-						label="triplet.svg"
-						className="p-0"
-					/>
-					<MetronomeButton
-						onClick={changeSubdivision}
-						value="4"
-						label="sixteenth.svg"
-						className="p-0"
-					/>
-				</ButtonGroup>
-				<ButtonGroup className="w-50 mx-1">
-					<MetronomeButton
-						onClick={changeSignature}
-						value="4"
-						label="4/4"
-					/>
-					<MetronomeButton
-						onClick={changeSignature}
-						value="3"
-						label="3/4"
-					/>
-					<MetronomeButton
-						onClick={changeSignature}
-						value="2"
-						label="2/4"
-					/>
-					<MetronomeButton
-						onClick={changeSignature}
-						value="5"
-						label="5/4"
-					/>
-				</ButtonGroup>
+				<SubdivisionButtons changeSubdivision={changeSubdivision} />
+				<TimeSignatureButtons changeSignature={changeSignature} />
 			</div>
 		</div>
 	);
