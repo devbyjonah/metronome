@@ -5,6 +5,7 @@ import MetronomeScreen from "./MetronomeScreen";
 import MetronomeEngine from "../../MetronomeEngine";
 import Sliders from "./Sliders";
 import MetronomeButton from "./MetronomeButton";
+import metronomeHandlers from "./metronomeHandlers";
 
 import "../../css/Metronome.css";
 
@@ -15,35 +16,15 @@ export default function Metronome() {
 	// creating state for values that interact with the UI
 	let [playing, setPlaying] = useState(metronomeEngine.current.playing);
 	let [tempo, setTempo] = useState(metronomeEngine.current.getTempo());
-	// handler functions for interacting with metronomeEngine
-	const startStop = () => {
-		metronomeEngine.current.startStop();
-		setPlaying(!playing);
-	};
-
-	const changeTempo = (event) => {
-		let bpmDiff = Number(event.currentTarget.value);
-		metronomeEngine.current.setTempo(
-			metronomeEngine.current.getTempo() + bpmDiff
-		);
-		setTempo(metronomeEngine.current.getTempo());
-	};
-
-	const changeVolume = (event) => {
-		metronomeEngine.current.setVolume(+event.currentTarget.value);
-	};
-
-	const changePitch = (event) => {
-		metronomeEngine.current.setPitch(+event.currentTarget.value);
-	};
-
-	const changeSubdivision = (event) => {
-		metronomeEngine.current.setSubdivision(+event.currentTarget.value);
-	};
-
-	const changeSignature = (event) => {
-		metronomeEngine.current.setBeatsPerBar(+event.currentTarget.value);
-	};
+	// passing state functions and metronomeEngine ref into handler functions
+	let {
+		startStop,
+		changeTempo,
+		changeVolume,
+		changePitch,
+		changeSignature,
+		changeSubdivision,
+	} = metronomeHandlers(setTempo, setPlaying, metronomeEngine);
 
 	return (
 		<div className="metronome">
