@@ -1,6 +1,7 @@
 .metronome {
 	width: 600px;
 	height: 600px;
+	margin: 125px;
 	padding: 50px;
 	background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
 	border-radius: 50%;
