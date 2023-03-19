@@ -1,7 +1,7 @@
 import Metronome from "./components/metronome/Metronome";
 import Header from "./components/Header";
 
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 
 import { DarkModeContext } from "./context/DarkModeContext";
 

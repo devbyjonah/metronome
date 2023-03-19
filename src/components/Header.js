@@ -36,15 +36,15 @@ export default function Header() {
 					>
 						<Nav.Link
 							className="fs-4 fw-light text-reset"
-							href="/#home"
+							href="/auth/login"
 						>
 							Sign in
 						</Nav.Link>
 						<Nav.Link
 							className="fs-4 fw-light text-reset"
-							href="/#contact"
+							href="/auth/logout"
 						>
-							Register
+							Logout
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
