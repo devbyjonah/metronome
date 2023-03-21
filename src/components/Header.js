@@ -5,7 +5,7 @@ import { Container, Nav, Navbar, Button } from "react-bootstrap";
 
 import { BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs";
 
-export default function Header() {
+export default function Header({ user }) {
 	const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 	return (
 		<Navbar
@@ -16,7 +16,13 @@ export default function Header() {
 		>
 			<Container>
 				<Navbar.Brand className="m-0 m-lg-2" href="/#home">
-					<img src="/profile.png" alt="logo" width={64} height={64} />
+					<img
+						src={user.image}
+						crossorigin="anonymous"
+						alt="logo"
+						width={64}
+						height={64}
+					/>
 				</Navbar.Brand>
 				<Button
 					variant={darkMode ? "light" : "dark"}

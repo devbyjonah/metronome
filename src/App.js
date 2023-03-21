@@ -1,17 +1,19 @@
 import Metronome from "./components/metronome/Metronome";
 import Header from "./components/Header";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { DarkModeContext } from "./context/DarkModeContext";
 
 export default function App() {
+  const [user, setUser] = useState({});
   useEffect(() => {
     // fetch profile details from express api
     (async () => {
       try {
         const response = await fetch("/user/profile");
         const user = await response.json();
+        setUser(user);
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +26,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Metronome />
     </>
   );
