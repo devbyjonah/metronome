@@ -11,14 +11,14 @@ export default function Header({ user }) {
 		<Navbar
 			className={darkMode ? "text-bg-dark" : "text-bg-light"}
 			fixed="top"
-			expand="lg"
+			expand="md"
 			style={{ opacity: 95 + "%" }}
 		>
 			<Container>
 				<Navbar.Brand className="m-0 m-lg-2" href="/#home">
 					<img
 						src={user.image}
-						crossorigin="anonymous"
+						crossOrigin="anonymous"
 						alt="logo"
 						width={64}
 						height={64}

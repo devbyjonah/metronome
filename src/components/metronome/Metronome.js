@@ -31,7 +31,8 @@ export default function Metronome() {
 
 	return (
 		<div className="metronome">
-			<div className="h-50 d-flex align-items-end justify-content-evenly">
+			<Sliders changeVolume={changeVolume} changePitch={changePitch} />
+			<div className="my-3 mt-md-5 d-flex flex-wrap align-items-center justify-content-evenly">
 				<ButtonGroup>
 					<MetronomeButton
 						onClick={changeTempo}
@@ -44,17 +45,12 @@ export default function Metronome() {
 						label="-"
 					/>
 				</ButtonGroup>
-				<Sliders
-					changeVolume={changeVolume}
-					changePitch={changePitch}
+				<MetronomeScreen tempo={tempo} />
+				<MetronomeButton
+					className="order-1 order-sm-0 order-md-0 flex-wrap flex-sm-nowrap"
+					onClick={startStop}
+					label={playing ? "Stop" : "Start"}
 				/>
-				<div className="d-flex flex-column">
-					<MetronomeScreen tempo={tempo} />
-					<MetronomeButton
-						onClick={startStop}
-						label={playing ? "Stop" : "Start"}
-					/>
-				</div>
 				<ButtonGroup>
 					<MetronomeButton
 						onClick={changeTempo}
@@ -68,9 +64,9 @@ export default function Metronome() {
 					/>
 				</ButtonGroup>
 			</div>
-			<div className="d-flex mt-3">
-				<SubdivisionButtons changeSubdivision={changeSubdivision} />
+			<div className="gap-1 d-flex flex-column align-items-center align-items-md-stretch flex-md-row mt-3">
 				<TimeSignatureButtons changeSignature={changeSignature} />
+				<SubdivisionButtons changeSubdivision={changeSubdivision} />
 			</div>
 		</div>
 	);

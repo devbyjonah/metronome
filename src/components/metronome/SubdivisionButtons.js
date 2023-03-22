@@ -3,7 +3,7 @@ import MetronomeButton from "./MetronomeButton";
 
 export default function SubdivisionButtons({ changeSubdivision }) {
 	return (
-		<ButtonGroup className="w-50 mx-1">
+		<ButtonGroup className="subdivisions">
 			<MetronomeButton
 				onClick={changeSubdivision}
 				value="1"
