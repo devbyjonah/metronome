@@ -15,7 +15,7 @@ export default function Header({ user }) {
 			style={{ opacity: 95 + "%" }}
 		>
 			<Container>
-				<Navbar.Brand className="m-0 m-lg-2" href="/#home">
+				<Navbar.Brand href="/#home">
 					<img
 						src={user.image}
 						crossOrigin="anonymous"
