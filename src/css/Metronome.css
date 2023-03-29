@@ -21,6 +21,7 @@
 		height: 400px;
 		margin: 100px auto;
 		padding: 25px;
+		border-radius: 0;
 	}
 	.subdivisions {
 		width: auto;
