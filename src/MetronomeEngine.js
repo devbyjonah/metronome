@@ -5,7 +5,7 @@
 */
 
 export default class MetronomeEngine {
-	constructor() {
+	constructor(animationCallback) {
 		this._audioContext = null; // reference to _audioContext from web audio API
 		this._noteQueue = []; // stores all notes played/scheduled for debugging
 		this._currentBeat = 0;
@@ -19,6 +19,7 @@ export default class MetronomeEngine {
 		this._volume = 1;
 		this._pitch = 1000;
 		this._subdivision = 1; // number of subdivisions per beat
+		this._animationCallback = animationCallback;
 	}
 
 	setSubdivision(subdivision) {
@@ -104,6 +105,7 @@ export default class MetronomeEngine {
 		osc.connect(envelope);
 		envelope.connect(gainNode).connect(this._audioContext.destination);
 
+		this._animationCallback(beatNumber);
 		osc.start(time);
 		osc.stop(time + 0.03);
 	}

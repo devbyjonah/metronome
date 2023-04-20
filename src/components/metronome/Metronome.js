@@ -13,9 +13,12 @@ import metronomeHandlers from "./metronomeHandlers";
 import "../../css/Metronome.css";
 
 export default function Metronome() {
+	let animationCallback = (beatNumber) => {
+		console.log(`beat numba: ${beatNumber}`);
+	};
 	// store new metronome as a ref
 	// ref.current allows changes without re-rendering and persists after re-renders
-	let metronomeEngine = useRef(new MetronomeEngine());
+	let metronomeEngine = useRef(new MetronomeEngine(animationCallback));
 	// creating state for values that interact with the UI
 	let [playing, setPlaying] = useState(metronomeEngine.current.playing);
 	let [tempo, setTempo] = useState(metronomeEngine.current.getTempo());
