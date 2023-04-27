@@ -55,9 +55,12 @@ export default class MetronomeEngine {
 		osc.connect(envelope);
 		envelope.connect(gainNode).connect(this._audioContext.destination);
 
-		this._animationCallback(beatNumber);
 		osc.start(time);
 		osc.stop(time + 0.03);
+
+		if (onBeat) {
+			this._animationCallback(beatNumber, 60.0 / this._tempo);
+		}
 	}
 
 	_scheduler() {

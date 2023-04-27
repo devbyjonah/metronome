@@ -32,8 +32,13 @@ export default function Metronome() {
 		changeSubdivision,
 	} = metronomeHandlers(setTempo, setPlaying, metronomeEngine);
 
-	let animationCallback = (beatNumber) => {
+	let animationCallback = (beatNumber, secondsPerBeat) => {
 		setCurrentBeat(beatNumber);
+		let beater = document.querySelector(".beater");
+		beater.style.transition = `transform ${secondsPerBeat}s linear`;
+		beater.style.transform = `rotate(${
+			beatNumber % 2 !== 0 ? "-30deg" : "30deg"
+		})`;
 	};
 	metronomeEngine.current.setAnimationCallback(animationCallback);
 

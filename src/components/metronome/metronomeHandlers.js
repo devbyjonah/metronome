@@ -9,6 +9,8 @@ export default function metronomeHandlers(
 	return {
 		startStop: () => {
 			metronomeEngine.current.startStop();
+			let beater = document.querySelector(".beater");
+			beater.style.transform = "rotate(0deg)";
 			setPlaying((current) => !current);
 		},
 		changeTempo: (event) => {
