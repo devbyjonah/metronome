@@ -1,5 +1,6 @@
 import Metronome from "./components/metronome/Metronome";
 import Header from "./components/Header";
+import "./css/App.css";
 
 import { useContext, useEffect, useState } from "react";
 
@@ -27,7 +28,9 @@ export default function App() {
   return (
     <>
       <Header user={user} />
-      <Metronome />
+      <div className="metronome-container">
+        <Metronome />
+      </div>
     </>
   );
 }
