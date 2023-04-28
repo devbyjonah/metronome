@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-import MetronomeScreen from "./MetronomeScreen";
 import Sliders from "./Sliders";
 import MetronomeButton from "./MetronomeButton";
 import TimeSignatureButtons from "./TimeSignatureButtons";
@@ -37,7 +36,7 @@ export default function Metronome() {
 		let beater = document.querySelector(".beater");
 		beater.style.transition = `transform ${secondsPerBeat}s linear`;
 		beater.style.transform = `rotate(${
-			beatNumber % 2 !== 0 ? "-30deg" : "30deg"
+			beater.style.transform === "rotate(30deg)" ? "-30deg" : "30deg"
 		})`;
 	};
 	metronomeEngine.current.setAnimationCallback(animationCallback);
