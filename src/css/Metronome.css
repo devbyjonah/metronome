@@ -1,32 +1,32 @@
-.metronome {
-	width: 600px;
-	height: 600px;
-	margin: 100px auto;
-	padding: 50px;
-	background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
-	border-radius: 50%;
+.metronome-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.subdivisions {
-	width: 100%;
+.metronomeBase {
+  background-image: url("../../public/metronomeBase.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  margin: 5rem auto;
+  width: 643px;
+  height: 963px;
 }
 
-.signatures {
-	width: 100%;
+.beater {
+  height: 925px;
+  width: 80px;
+  background-image: url("../../public/beater.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  margin-left: -40px;
+  transform-origin: center 887.5px;
 }
 
-@media (max-width: 768px) {
-	.metronome {
-		width: 100%;
-		height: 400px;
-		margin: 100px auto;
-		padding: 25px;
-		border-radius: 0;
-	}
-	.subdivisions {
-		width: auto;
-	}
-	.signatures {
-		width: auto;
-	}
+.startStop {
+  position: absolute;
 }
