@@ -43,7 +43,16 @@ export default function Metronome() {
 
 	return (
 		<div className="metronomeBase">
-			<div className="beater"></div>
+			<div className="beater">
+				<div className="sliderContainer">
+					<div
+						className="slider text-bg-dark"
+						style={{ bottom: ((tempo - 40) / 180) * 100 + "%" }}
+					>
+						{tempo}
+					</div>
+				</div>
+			</div>
 			<MetronomeButton
 				label={playing ? "Stop" : "Start"}
 				onClick={startStop}
