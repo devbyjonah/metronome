@@ -165,7 +165,7 @@ export default class MetronomeEngine {
 	}
 
 	setTempo(tempo) {
-		if (typeof tempo === "number" && tempo > 0 && tempo < 500) {
+		if (typeof tempo === "number" && tempo >= 40 && tempo <= 220) {
 			this._tempo = tempo;
 		}
 	}
