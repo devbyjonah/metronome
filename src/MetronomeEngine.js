@@ -85,14 +85,6 @@ export default class MetronomeEngine {
 		}
 	}
 
-	startStop() {
-		if (this._playing) {
-			this._stop();
-		} else {
-			this._start();
-		}
-	}
-
 	_start() {
 		if (this._playing) return;
 
@@ -115,6 +107,14 @@ export default class MetronomeEngine {
 	_stop() {
 		this._playing = false;
 		clearInterval(this._intervalId);
+	}
+
+	startStop() {
+		if (this._playing) {
+			this._stop();
+		} else {
+			this._start();
+		}
 	}
 
 	getPlaying() {
