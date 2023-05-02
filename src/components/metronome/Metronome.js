@@ -46,7 +46,7 @@ export default function Metronome() {
 			<div className="beater">
 				<div className="sliderContainer">
 					<div
-						className="slider text-bg-dark"
+						className="slider"
 						style={{ bottom: ((tempo - 40) / 180) * 100 + "%" }}
 					>
 						{tempo}
