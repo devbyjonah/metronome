@@ -108,7 +108,7 @@ export default class MetronomeEngine {
 		this._playing = false;
 		clearInterval(this._intervalId);
 	}
-
+	// surface level methods for use in the metronome react component
 	startStop() {
 		if (this._playing) {
 			this._stop();
