@@ -51,7 +51,7 @@ export default function Metronome() {
 	// custom draggable slider for tempo
 	let previousY = 0,
 		currentY = 0;
-	// event listeners for dragging slider
+	// start drag adds event listeners for dragging slider
 	let startDrag = (e) => {
 		previousY = e.clientY;
 		/* mousemove event listener is added to the metronomeBase so that dragging
@@ -74,8 +74,6 @@ export default function Metronome() {
 		dragSlider is called on mousemove and calculates the difference between
 		the previous and current Y positions. The difference is converted to a 
 		percentage of the sliderContainer height and used to calculate the new tempo.
-
-
 	*/
 	let dragSlider = (e) => {
 		currentY = e.clientY;

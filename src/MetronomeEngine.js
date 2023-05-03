@@ -9,7 +9,7 @@ export default class MetronomeEngine {
 		this._audioContext = null; // reference to _audioContext from web audio API
 		this._noteQueue = []; // stores all notes played/scheduled for debugging
 		this._currentBeat = 0;
-		this._beatsPerBar = 5;
+		this._beatsPerBar = 4;
 		this._tempo = 120;
 		this._lookahead = 25; // how often to call scheduler in ms
 		this._scheduleAheadTime = 0.1; // how far ahead to schedule audio in sec
