@@ -13,11 +13,8 @@ export default function metronomeHandlers(
 			beater.style.transform = "rotate(0deg)";
 			setPlaying((current) => !current);
 		},
-		changeTempo: (event) => {
-			let bpmDiff = Number(event.currentTarget.value);
-			metronomeEngine.current.setTempo(
-				metronomeEngine.current.getTempo() + bpmDiff
-			);
+		changeTempo: (newTempo) => {
+			metronomeEngine.current.setTempo(newTempo);
 			setTempo(metronomeEngine.current.getTempo());
 		},
 		changeVolume: (event) => {
