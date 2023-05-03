@@ -7,7 +7,7 @@ export default function MetronomeButton({ label, onClick, value, className }) {
 
 	return (
 		<Button
-			variant={darkMode ? "dark" : "light"}
+			variant={darkMode ? "light" : "dark"}
 			onClick={onClick}
 			value={value}
 			className={className + " btn-lg"}

@@ -91,7 +91,7 @@ export default function Metronome() {
 			<div className="beater-fixed">
 				<div className="sliderContainer">
 					<div
-						className="slider"
+						className="slider text-bg-dark"
 						onMouseDown={startDrag}
 						style={{ bottom: ((tempo - 40) / 180) * 100 + "%" }}
 					>
