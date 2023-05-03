@@ -95,7 +95,7 @@ export default function Metronome() {
 						onMouseDown={startDrag}
 						style={{ bottom: ((tempo - 40) / 180) * 100 + "%" }}
 					>
-						{tempo}
+						{tempo} bpm
 					</div>
 				</div>
 			</div>

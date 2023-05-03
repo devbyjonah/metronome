@@ -30,6 +30,8 @@
 
 .beater-fixed {
   background-image: none;
+
+  box-shadow: 5px 5px 100px 10px rgba(0, 0, 0, 0.2);
 }
 
 .sliderContainer {
@@ -50,7 +52,7 @@
   color: black;
   font-family: "Inter", sans-serif;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   position: absolute;
   user-select: none;
 }
