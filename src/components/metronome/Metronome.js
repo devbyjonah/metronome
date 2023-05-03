@@ -33,7 +33,11 @@ export default function Metronome() {
 		changeSubdivision,
 	} = metronomeHandlers(setTempo, setPlaying, metronomeEngine);
 
-	// beater animation callback function
+	/*
+		beater animation callback is invoked from the metronomeEngine
+		at the same time each beat is played. The metronomeEngine passes the
+		current secondsPerBeat to sync the animation with the current tempo.
+	*/
 	const animationCallback = (beatNumber, secondsPerBeat) => {
 		setCurrentBeat(beatNumber);
 		const beater = document.querySelector(".beater");
@@ -44,24 +48,35 @@ export default function Metronome() {
 	};
 	metronomeEngine.current.setAnimationCallback(animationCallback);
 
-	// drag and drop slider
+	// custom draggable slider for tempo
 	let previousY = 0,
 		currentY = 0;
-
+	// event listeners for dragging slider
 	let startDrag = (e) => {
 		previousY = e.clientY;
+		/* mousemove event listener is added to the metronomeBase so that dragging
+		 can continue outside of the sliderContainer */
 		document
 			.querySelector(".metronomeBase")
 			.addEventListener("mousemove", dragSlider);
+
+		/* mouseup event added to window allows slider to be released 
+		 on mouseup regardless of cursor position */
 		window.addEventListener("mouseup", endDrag);
 	};
-
+	// remove listener for mousemove event
 	let endDrag = (e) => {
 		document
 			.querySelector(".metronomeBase")
 			.removeEventListener("mousemove", dragSlider);
 	};
+	/*
+		dragSlider is called on mousemove and calculates the difference between
+		the previous and current Y positions. The difference is converted to a 
+		percentage of the sliderContainer height and used to calculate the new tempo.
 
+
+	*/
 	let dragSlider = (e) => {
 		currentY = e.clientY;
 		let diff = currentY - previousY;
