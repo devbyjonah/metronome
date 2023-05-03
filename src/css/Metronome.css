@@ -27,6 +27,13 @@
   transform-origin: center 887.5px;
 }
 
+.sliderContainer {
+  margin-top: 45%;
+  width: 100%;
+  height: 82%;
+  position: relative;
+}
+
 .slider {
   height: 30px;
   width: 80px;
@@ -49,13 +56,6 @@
 .slider:active {
   cursor: grabbing;
   scale: 1.1;
-}
-
-.sliderContainer {
-  margin-top: 40%;
-  width: 100%;
-  height: 82%;
-  position: relative;
 }
 
 .startStop {
