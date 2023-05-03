@@ -14,15 +14,17 @@ import "../../css/Metronome.css";
 export default function Metronome() {
 	// store new metronome as a ref
 	// ref.current allows changes without re-rendering and persists after re-renders
-	let metronomeEngine = useRef(new MetronomeEngine());
+	const metronomeEngine = useRef(new MetronomeEngine());
 	// creating state for values that interact with the UI
-	let [playing, setPlaying] = useState(metronomeEngine.current.getPlaying());
-	let [tempo, setTempo] = useState(metronomeEngine.current.getTempo());
-	let [currentBeat, setCurrentBeat] = useState(
+	const [playing, setPlaying] = useState(
+		metronomeEngine.current.getPlaying()
+	);
+	const [tempo, setTempo] = useState(metronomeEngine.current.getTempo());
+	const [currentBeat, setCurrentBeat] = useState(
 		metronomeEngine.current.getCurrentBeat()
 	);
 	// passing state functions and metronomeEngine ref into handler functions
-	let {
+	const {
 		startStop,
 		changeTempo,
 		changeVolume,
@@ -32,9 +34,9 @@ export default function Metronome() {
 	} = metronomeHandlers(setTempo, setPlaying, metronomeEngine);
 
 	// beater animation callback function
-	let animationCallback = (beatNumber, secondsPerBeat) => {
+	const animationCallback = (beatNumber, secondsPerBeat) => {
 		setCurrentBeat(beatNumber);
-		let beater = document.querySelector(".beater");
+		const beater = document.querySelector(".beater");
 		beater.style.transition = `transform ${secondsPerBeat}s linear`;
 		beater.style.transform = `rotate(${
 			beater.style.transform === "rotate(30deg)" ? "-30deg" : "30deg"
@@ -47,7 +49,6 @@ export default function Metronome() {
 		currentY = 0;
 
 	let startDrag = (e) => {
-		console.log("started dragging");
 		previousY = e.clientY;
 		document
 			.querySelector(".metronomeBase")
@@ -56,7 +57,6 @@ export default function Metronome() {
 	};
 
 	let endDrag = (e) => {
-		console.log("stopped dragging");
 		document
 			.querySelector(".metronomeBase")
 			.removeEventListener("mousemove", dragSlider);
@@ -65,14 +65,15 @@ export default function Metronome() {
 	let dragSlider = (e) => {
 		currentY = e.clientY;
 		let diff = currentY - previousY;
-		let percentage = diff / 788.5;
+		let percentage = diff / 788.5; // refactor to use current height of sliderContainer + slider
 		let newTempo = tempo - Math.round(percentage * 180);
 		changeTempo(newTempo);
 	};
 
 	return (
 		<div className="metronomeBase">
-			<div className="beater">
+			<div className="beater"></div>
+			<div className="beater-fixed">
 				<div className="sliderContainer">
 					<div
 						className="slider"
