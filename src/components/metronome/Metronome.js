@@ -52,7 +52,7 @@ export default function Metronome() {
 	let previousY = 0,
 		currentY = 0;
 	// start drag adds event listeners for dragging slider
-	let startDrag = (e) => {
+	const startDrag = (e) => {
 		previousY = e.clientY;
 		/* mousemove event listener is added to the metronomeBase so that dragging
 		 can continue outside of the sliderContainer */
@@ -65,7 +65,7 @@ export default function Metronome() {
 		window.addEventListener("mouseup", endDrag);
 	};
 	// remove listener for mousemove event
-	let endDrag = (e) => {
+	const endDrag = (e) => {
 		document
 			.querySelector(".metronomeBase")
 			.removeEventListener("mousemove", dragSlider);
@@ -75,11 +75,11 @@ export default function Metronome() {
 		the previous and current Y positions. The difference is converted to a 
 		percentage of the sliderContainer height and used to calculate the new tempo.
 	*/
-	let dragSlider = (e) => {
+	const dragSlider = (e) => {
 		currentY = e.clientY;
-		let diff = currentY - previousY;
-		let percentage = diff / 788.5; // refactor to use current height of sliderContainer + slider
-		let newTempo = tempo - Math.round(percentage * 180);
+		const diff = currentY - previousY;
+		const percentage = diff / 788.5; // refactor to use current height of sliderContainer + slider
+		const newTempo = tempo - Math.round(percentage * 180);
 		changeTempo(newTempo);
 	};
 
