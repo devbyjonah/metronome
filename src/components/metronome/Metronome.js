@@ -69,6 +69,7 @@ export default function Metronome() {
 		document
 			.querySelector(".metronomeBase")
 			.removeEventListener("mousemove", dragSlider);
+		window.removeEventListener("mouseup", endDrag);
 	};
 	/*
 		dragSlider is called on mousemove and calculates the difference between
