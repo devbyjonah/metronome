@@ -27,6 +27,7 @@ export default function Metronome() {
 	const {
 		startStop,
 		changeTempo,
+		tapTempo,
 		changeVolume,
 		changePitch,
 		changeSignature,
@@ -102,6 +103,11 @@ export default function Metronome() {
 				label={playing ? "Stop" : "Start"}
 				onClick={startStop}
 				className="startStop"
+			/>
+			<MetronomeButton
+				label="Tap tempo"
+				onClick={tapTempo}
+				className="position-absolute mt-5"
 			/>
 		</div>
 	);

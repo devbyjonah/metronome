@@ -20,6 +20,7 @@ export default class MetronomeEngine {
 		this._pitch = 1000;
 		this._subdivision = 1; // number of subdivisions per beat
 		this._animationCallback = null;
+		this._previousTap = null;
 	}
 
 	_nextBeat() {
@@ -178,5 +179,13 @@ export default class MetronomeEngine {
 		) {
 			this._beatsPerBar = beatsPerBar;
 		}
+	}
+
+	tapTempo() {
+		if (this._previousTap) {
+			const diff = this._audioContext.currentTime - this._previousTap;
+			console.log(diff);
+		}
+		this._previousTap = this._audioContext.currentTime;
 	}
 }

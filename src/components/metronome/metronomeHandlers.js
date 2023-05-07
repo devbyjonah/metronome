@@ -13,6 +13,10 @@ export default function metronomeHandlers(
 			beater.style.transform = "rotate(0deg)";
 			setPlaying((current) => !current);
 		},
+		tapTempo: () => {
+			metronomeEngine.current.tapTempo();
+			setTempo(metronomeEngine.current.getTempo());
+		},
 		changeTempo: (newTempo) => {
 			metronomeEngine.current.setTempo(newTempo);
 			setTempo(metronomeEngine.current.getTempo());
