@@ -182,9 +182,13 @@ export default class MetronomeEngine {
 	}
 
 	tapTempo() {
+		if (this._audioContext === null) {
+			this._audioContext = new (window.AudioContext ||
+				window.webkitAudioContext)();
+		}
 		if (this._previousTap) {
 			const diff = this._audioContext.currentTime - this._previousTap;
-			console.log(diff);
+			this.setTempo(Math.floor(60 / diff));
 		}
 		this._previousTap = this._audioContext.currentTime;
 	}
