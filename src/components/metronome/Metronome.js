@@ -3,8 +3,6 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import Sliders from "./Sliders";
 import MetronomeButton from "./MetronomeButton";
-import TimeSignatureButtons from "./TimeSignatureButtons";
-import SubdivisionButtons from "./SubdivisionButtons";
 
 import MetronomeEngine from "../../MetronomeEngine";
 import metronomeHandlers from "./metronomeHandlers";
