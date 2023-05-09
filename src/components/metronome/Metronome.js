@@ -85,6 +85,7 @@ export default function Metronome() {
 
 	return (
 		<div className="metronomeBase">
+			<div className="sliderRail"></div>
 			<div className="beater"></div>
 			<div className="beater-fixed">
 				<div className="sliderContainer">

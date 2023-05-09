@@ -88,3 +88,14 @@
 .startStop {
   position: absolute;
 }
+
+.sliderRail {
+  top: 5%;
+  left: 50%;
+  margin-left: -7px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  height: 80%;
+  width: 10px;
+}
