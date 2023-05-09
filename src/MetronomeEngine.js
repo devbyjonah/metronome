@@ -20,7 +20,7 @@ export default class MetronomeEngine {
 		this._pitch = 1000;
 		this._subdivision = 1; // number of subdivisions per beat
 		this._animationCallback = null;
-		this._previousTap = null;
+		this._tapDifferenceArray = []; // stores most recent intervals between taps
 	}
 
 	_nextBeat() {
@@ -180,15 +180,38 @@ export default class MetronomeEngine {
 			this._beatsPerBar = beatsPerBar;
 		}
 	}
-
+	/*
+	 	update method keeps tapDifferenceArray length at 5 and clears array if latest diff
+		is 50% greater or less than the average.
+	*/
+	_updateTapDifferenceArray(diff) {
+		const average =
+			this._tapDifferenceArray.reduce((a, b) => a + b, 0) /
+			this._tapDifferenceArray.length;
+		if (average >= diff * 1.5 || average <= diff * 0.5) {
+			this._tapDifferenceArray = [];
+		}
+		if (this._tapDifferenceArray.length >= 5) {
+			this._tapDifferenceArray.shift();
+		}
+		this._tapDifferenceArray.push(diff);
+		return average;
+	}
+	/*
+		tapTempo method
+		- uses audio context to find time passed between taps
+		- stores time difference(diff) between taps in tapDifferenceArray
+	*/
 	tapTempo() {
+		// if no audio context, create one
 		if (this._audioContext === null) {
 			this._audioContext = new (window.AudioContext ||
 				window.webkitAudioContext)();
 		}
 		if (this._previousTap) {
 			const diff = this._audioContext.currentTime - this._previousTap;
-			this.setTempo(Math.floor(60 / diff));
+			const average = this._updateTapDifferenceArray(diff);
+			this.setTempo(Math.floor(60 / average));
 		}
 		this._previousTap = this._audioContext.currentTime;
 	}
