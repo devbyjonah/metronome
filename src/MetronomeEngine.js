@@ -3,7 +3,6 @@
 	setInterval is used to call the scheduler method based every _lookahead ms
 	the scheduler will continue to schedule notes into the queue until exceeding the _scheduleAheadTime property limit
 */
-
 export default class MetronomeEngine {
 	constructor() {
 		this._audioContext = null; // reference to _audioContext from web audio API
@@ -18,7 +17,7 @@ export default class MetronomeEngine {
 		this._volume = 1;
 		this._pitch = 1000;
 		this._subdivision = 1; // number of subdivisions per beat
-		this._animationCallback = null;
+		this._animationCallback = null; // ***refactor animation callback to be an array of callbacks for more flexibility***
 		this._tapDifferenceArray = []; // stores most recent intervals between taps
 	}
 
