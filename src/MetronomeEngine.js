@@ -7,7 +7,6 @@
 export default class MetronomeEngine {
 	constructor() {
 		this._audioContext = null; // reference to _audioContext from web audio API
-		this._noteQueue = []; // stores all notes played/scheduled for debugging
 		this._currentBeat = 0;
 		this._beatsPerBar = 4;
 		this._tempo = 120;
@@ -35,9 +34,6 @@ export default class MetronomeEngine {
 	}
 
 	_scheduleNote(beatNumber, time, onBeat) {
-		// push not to queue for tracking
-		this._noteQueue.push({ note: beatNumber, time: time });
-
 		// create sound source (try switching to buffer ?)
 		const osc = this._audioContext.createOscillator();
 		const envelope = this._audioContext.createGain();
